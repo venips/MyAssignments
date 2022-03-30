@@ -1,0 +1,142 @@
+package com.veni.javafiles;
+
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class BookLibrary {
+
+	public static void main(String[] args) {
+		
+	HashSet<PublicLibrary>  hspl = new HashSet<PublicLibrary>();
+	System.out.println("National Library");
+	System.out.println("----------------");
+	PublicLibrary pl= new PublicLibrary(301,"The Harry Potter series", "J.K. Rowling",2000, 250,320);
+	PublicLibrary p2= new PublicLibrary(302,"Siddhartha", "Herman Hesse",2020, 150,220);
+	PublicLibrary p3= new PublicLibrary(303,"Candide", "Voltaire",2001, 150,203);
+	PublicLibrary p4= new PublicLibrary(304,"A Game of Thrones", "George R.R. Martin",1990, 180,400);
+	PublicLibrary p5= new PublicLibrary(305,"Hiroshima", "John Hersey",1946, 160,210);
+	PublicLibrary p6= new PublicLibrary(305,"Hiroshima", "John Hersey",1946, 160,210);
+	PublicLibrary p7= new PublicLibrary(302,"Siddhartha", "Herman Hesse",2020, 150,220);
+	
+	hspl.add(pl);
+	hspl.add(p2);
+	hspl.add(p3);
+	hspl.add(p4);
+	hspl.add(p5);
+	hspl.add(p6);
+	hspl.add(p7);
+	
+	Iterator<PublicLibrary> pliter = hspl.iterator();
+	while(pliter.hasNext()) {
+		System.out.println(pliter.next());
+		
+	}
+	
+	}
+
+}
+class PublicLibrary{
+	int bookId;
+	String bookName;
+	String author;
+	int edition;
+	int noOfPages;
+	int price;
+
+	public PublicLibrary(int bookId, String bookName, String author, int edition, int noOfPages, int price) {
+		super();
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.author = author;
+		this.edition = edition;
+		this.noOfPages = noOfPages;
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "PublicLibrary [bookId=" + bookId + ", bookName=" + bookName + ", author=" + author + ", edition="
+				+ edition + ", noOfPages=" + noOfPages + ", price=" + price + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + bookId;
+		return result;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public int getEdition() {
+		return edition;
+	}
+
+	public void setEdition(int edition) {
+		this.edition = edition;
+	}
+
+	public int getNoOfPages() {
+		return noOfPages;
+	}
+
+	public void setNoOfPages(int noOfPages) {
+		this.noOfPages = noOfPages;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PublicLibrary other = (PublicLibrary) obj;
+		if (bookId != other.bookId)
+			return false;
+		return true;
+	}	
+	
+}
+class BookComparator implements Comparator<PublicLibrary>{
+
+	@Override
+	public int compare(PublicLibrary o1, PublicLibrary o2) {
+		
+		return o1.getBookId()-o2.getBookId();
+	}
+	
+}
